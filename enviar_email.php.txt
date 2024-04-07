@@ -1,0 +1,22 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Capturando os dados do formulário
+    $nome = $_POST["nome"];
+    $assunto = $_POST["assunto"];
+    $email = $_POST["email"];
+    $telefone = $_POST["telefone"];
+    $mensagem = $_POST["mensagem"];
+
+    // Estrutura do e-mail
+    $para = "email@cooperativa.com";
+    $assunto_email = $assunto;
+    $remetente = $email;
+    $corpo_email = "Email: $email\nTelefone: $telefone\n\n$mensagem";
+
+    // Enviando o e-mail
+    mail($para, $assunto_email, $corpo_email, "From: $remetente");
+
+    // Redirecionamento após o envio
+    header("Location: obrigado.html");
+}
+?>
